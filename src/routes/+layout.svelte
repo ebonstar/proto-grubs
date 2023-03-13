@@ -1,5 +1,6 @@
 <script>
 	import Header from './Header.svelte';
+	import './skelet.min.css';
 	import './styles.css';
 </script>
 
@@ -20,6 +21,7 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		font-family: var(--font-family)
 	}
 
 	main {
