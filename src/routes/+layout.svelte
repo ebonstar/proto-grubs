@@ -1,9 +1,11 @@
 <script>
+	import Header from "./Header.svelte";
 	import './skelet.min.css';
 	import './styles.css';
 </script>
 
 <div class="app">
+<Header />
 	<main>
 		<slot />
 	</main>
@@ -19,6 +21,7 @@
 		border: 5px solid black;
 		border-radius: 24px;
 		background: white;
+		overflow: scroll;
 	}
 
 	main {
