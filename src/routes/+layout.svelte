@@ -20,8 +20,12 @@
 	.app {
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
-		font-family: var(--font-family)
+		box-sizing: border-box;
+		width: 428px;
+		height: 926px;
+		border: 5px solid black;
+		border-radius: 24px;
+		background: white;
 	}
 
 	main {
