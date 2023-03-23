@@ -57,6 +57,6 @@
 	li[aria-current='true'] a {
 		text-decoration: underline;
 		text-underline-position: under;
-  	text-decoration-thickness: 3px;
+		text-decoration-thickness: 3px;
 	}
 </style>

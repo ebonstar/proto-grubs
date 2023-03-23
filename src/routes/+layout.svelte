@@ -1,12 +1,12 @@
 <script>
-	import Header from "./Header.svelte";
-	import "@fontsource/inter";
+	import Header from './Header.svelte';
+	import '@fontsource/inter';
 	import './skelet.min.css';
 	import './styles.css';
 </script>
 
 <div class="app">
-<Header />
+	<Header />
 	<main>
 		<slot />
 	</main>
