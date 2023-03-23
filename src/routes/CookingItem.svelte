@@ -7,7 +7,7 @@
 	const toggleCooked = () => (cooked = !cooked);
 </script>
 
-<div class="row" class:cooked on:click={toggleCooked}>
+<div class="recipe-row" class:cooked on:click={toggleCooked}>
 	<div class="details">
 		<h5>{name}</h5>
 		{#if !cooked}
@@ -19,7 +19,7 @@
 </div>
 
 <style>
-	.row {
+	.recipe-row {
 		display: flex;
 		align-items: start;
 		justify-content: space-between;
@@ -27,8 +27,12 @@
 		border-bottom: 2px solid black;
 	}
 
-	.row:first-of-type {
+	.recipe-row:first-of-type {
 		padding-top: 0;
+	}
+
+	.recipe-row:last-of-type {
+		border-bottom: 0;
 	}
 
 	h5 {
