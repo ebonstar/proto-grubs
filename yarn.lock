@@ -1071,6 +1071,7 @@ __metadata:
     prettier-plugin-svelte: ^2.10.0
     svelte: ^3.57.0
     svelte-check: ^3.1.4
+    svelte-dnd-action: ^0.9.22
     typescript: ^4.9.5
     vite: ^4.2.1
   languageName: unknown
@@ -1825,6 +1826,15 @@ __metadata:
   bin:
     svelte-check: bin/svelte-check
   checksum: b029642a31110edc6d7caa47dbc53102396c171db99a5121288bdf2b4b33539dc430e05b505c7d77ad25a19a5a5560cae0e86227eca07d5f2a6ab5ee452e987a
+  languageName: node
+  linkType: hard
+
+"svelte-dnd-action@npm:^0.9.22":
+  version: 0.9.22
+  resolution: "svelte-dnd-action@npm:0.9.22"
+  peerDependencies:
+    svelte: ">=3.23.0"
+  checksum: 4622e43b59b9fba835c1959db4155ed264fb6051fa4b96f849adeb26212e2a6ce2bfed4e411c268fcedf8d5e5f5ffb81e202cb26b8282c6d373968ab37639ae3
   languageName: node
   linkType: hard
 

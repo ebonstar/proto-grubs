@@ -1,5 +1,7 @@
 <script>
+	import { page } from '$app/stores';
 	import { MEAL_PLANS } from './plans.js';
+	const planName = $page.url.searchParams.get('name');
 </script>
 
 <svelte:head>
@@ -8,10 +10,16 @@
 
 <div class="card">
 	<h5>Current plan</h5>
-	<x-cell><h4 class="plan">Paleo week 4 (day 3 of 7) ✏️</h4></x-cell>
+	<h4>Paleo week 4 (day 3 of 7) ✏️</h4>
 </div>
 <div class="card">
 	<h5>Next plan</h5>
+	{#if planName}
+		<a href="/usemealplan?name={planName}"><h4>{planName} (7 days) ✏️</h4></a>
+		Starting 22 March 2023
+	{:else}
+		<a href="/usemealplan"><button class="is-outline is-white">+ Add a meal plan</button></a>
+	{/if}
 </div>
 <h1>Meal plans</h1>
 <ul class="plans-list">
@@ -30,6 +38,14 @@
 	.card h4,
 	h5 {
 		color: white;
+	}
+
+	.card h5 {
+		margin: 0;
+	}
+
+	.card a {
+		text-decoration: none;
 	}
 
 	.plans-list li {

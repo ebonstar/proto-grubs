@@ -14,6 +14,7 @@
 
 <style>
 	.app {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
