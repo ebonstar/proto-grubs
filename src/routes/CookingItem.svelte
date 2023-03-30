@@ -7,7 +7,7 @@
 	const toggleCooked = () => (cooked = !cooked);
 </script>
 
-<div class="recipe-row" class:cooked on:click={toggleCooked}>
+<div class="recipe-row" class:cooked>
 	<div class="details">
 		<h5>{name}</h5>
 		{#if !cooked}
@@ -15,7 +15,9 @@
 			{#if cook}<div>Cook time: {cook}</div>{/if}
 		{/if}
 	</div>
-	<button class="button is-black">{cooked ? 'Done ✓' : 'Cook!'}</button>
+	<a href="/cook?name={name}"
+		><button class="button is-black">{cooked ? 'Done ✓' : 'Cook!'}</button></a
+	>
 </div>
 
 <style>

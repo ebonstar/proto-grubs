@@ -1,7 +1,14 @@
 <script>
+	import { today } from './store.js';
 	import CookingItem from './CookingItem.svelte';
 	import NutritionItem from './NutritionItem.svelte';
-	import { recipes, nutrition } from './data.js';
+	import { nutrition } from './data.js';
+
+	let recipes;
+
+	today.subscribe((value) => {
+		recipes = value;
+	});
 
 	let showNutrition = true;
 
