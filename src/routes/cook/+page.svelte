@@ -1,7 +1,19 @@
 <script>
-	import { page } from '$app/stores';
+  import { page } from '$app/stores';
+  import { today } from '../store.js';
 
 	const recipe = $page.url.searchParams.get('name');
+
+  const markAsDone = () => {
+    today.update(rs => {
+      return rs.map(r => {
+        if (r.name === recipe) {
+          r.cooked = true;
+        }
+        return r;
+      });
+    });
+  }
 </script>
 
 <svelte:head>
@@ -46,8 +58,8 @@
 		</li>
 	</ol>
 	<div class="actions">
-		<a href="/"><button class="is-black is-outline">Back</button></a>
-		<a href="/"><button class="is-black">Mark as Done!</button></a>
+    <a href="/"><button class="is-black is-outline">Back</button></a>
+		<button on:click={markAsDone} class="is-black">Mark as Done!</button>
 	</div>
 </div>
 
