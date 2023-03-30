@@ -2,6 +2,10 @@
 	import { RECIPES } from './recipes.js';
 
 	const recipes = RECIPES.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase());
+	let searchTerm = '';
+	$: filteredRecipes = recipes.filter((recipe) =>
+		recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+	);
 
 	let inactiveTags = [
 		'30min',
@@ -43,7 +47,7 @@
 
 <div>
 	<h1>Recipes</h1>
-	<input type="text" placeholder="Search recipe name or ingredient" />
+	<input type="text" bind:value={searchTerm} placeholder="Search recipe name or ingredient" />
 
 	{#each activeTags as activeTag}
 		<button on:click={() => deactivateTag(activeTag)} class="tag is-black">{activeTag}</button>
@@ -57,13 +61,13 @@
 
 	<ul class="recipe-list">
 		{#if activeTags.length > 0}
-			{#each recipes as recipe}
+			{#each filteredRecipes as recipe}
 				{#if activeTags.every((tag) => recipe.tags.includes(tag))}
 					<li>{recipe.name}</li>
 				{/if}
 			{/each}
 		{:else}
-			{#each recipes as recipe}
+			{#each filteredRecipes as recipe}
 				<li>{recipe.name}</li>
 			{/each}
 		{/if}
