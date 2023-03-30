@@ -25,7 +25,7 @@
 	}
 
 	progress {
-		accent-color: #8bc34a;
+		accent-color: #000;
 		width: 10rem;
 	}
 
