@@ -1,19 +1,25 @@
 <script>
-  import { page } from '$app/stores';
-  import { today } from '../store.js';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { today } from '../store.js';
 
 	const recipe = $page.url.searchParams.get('name');
 
-  const markAsDone = () => {
-    today.update(rs => {
-      return rs.map(r => {
-        if (r.name === recipe) {
-          r.cooked = true;
-        }
-        return r;
-      });
-    });
-  }
+	const markRecipeCooked = (done) => {
+		today.update((rs) => {
+			return rs.map((r) => {
+				if (r.name === recipe) {
+					r.cooked = done;
+				}
+				return r;
+			});
+		});
+
+		goto('/');
+	};
+
+	const markDone = () => markRecipeCooked(true);
+	const markNotDone = () => markRecipeCooked(false);
 </script>
 
 <svelte:head>
@@ -58,8 +64,8 @@
 		</li>
 	</ol>
 	<div class="actions">
-    <a href="/"><button class="is-black is-outline">Back</button></a>
-		<button on:click={markAsDone} class="is-black">Mark as Done!</button>
+		<button on:click={markNotDone} class="is-black is-outline">Not done</button>
+		<button on:click={markDone} class="is-black">Mark as Done!</button>
 	</div>
 </div>
 

@@ -125,7 +125,7 @@
 						on:consider={(e) => handleDndConsiderCards(column.id, e)}
 						on:finalize={(e) => handleDndFinalizeCards(column.id, e)}
 					>
-						<h5>{column.name}</h5>
+						<!-- <h5>{column.name}</h5> -->
 						{#each column.items as item (item.id)}
 							<div class="recipe" animate:flip={{ duration: flipDurationMs }}>
 								{item.name}
