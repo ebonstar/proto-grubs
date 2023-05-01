@@ -3,8 +3,10 @@
 
 	const recipes = RECIPES.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase());
 	let searchTerm = '';
-	$: filteredRecipes = recipes.filter((recipe) =>
-		recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+	$: filteredRecipes = recipes.filter(
+		(recipe) =>
+			recipe.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+			(!activeTags.length || activeTags.every((tag) => recipe.tags.includes(tag)))
 	);
 
 	let inactiveTags = [
@@ -60,17 +62,9 @@
 	</div>
 
 	<ul class="recipe-list">
-		{#if activeTags.length > 0}
-			{#each filteredRecipes as recipe}
-				{#if activeTags.every((tag) => recipe.tags.includes(tag))}
-					<li>{recipe.name}</li>
-				{/if}
-			{/each}
-		{:else}
-			{#each filteredRecipes as recipe}
-				<li>{recipe.name}</li>
-			{/each}
-		{/if}
+		{#each filteredRecipes as recipe}
+			<li><a href="/recipe?name={recipe.name}">{recipe.name}</a></li>
+		{/each}
 	</ul>
 </div>
 
@@ -94,5 +88,9 @@
 	.recipe-list li {
 		list-style-type: none;
 		margin: 0;
+	}
+
+	.recipe-list a {
+		color: black;
 	}
 </style>
