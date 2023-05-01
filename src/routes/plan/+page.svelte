@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { MEAL_PLANS } from './plans.js';
-	import { currentPlan, nextPlan } from "../store.js"
+	import { currentPlan, nextPlan } from '../store.js';
 
 	let current;
 	let next;
@@ -9,7 +9,7 @@
 	currentPlan.subscribe((value) => {
 		current = value;
 	});
-	
+
 	nextPlan.subscribe((value) => {
 		next = value;
 	});

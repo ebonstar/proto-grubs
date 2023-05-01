@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { MEAL_PLANS } from '../plan/plans.js';
-	import { nextPlan } from "../store.js"
+	import { nextPlan } from '../store.js';
 
 	let selected;
 	nextPlan.subscribe((value) => {
@@ -129,7 +129,6 @@
 		>
 			{#each mealPlanDays as column (column.id)}
 				<div class="column" animate:flip={{ duration: flipDurationMs }}>
-					
 					<h5>{column.name}</h5>
 					<div
 						class="day"
@@ -166,7 +165,9 @@
 
 	<div class="actions">
 		<a href="/plan"><button class="is-black is-outline">Back</button></a>
-			<button class={selected ? "is-black" : "disabled"}  on:click={saveNextPlan}>Save meal plan</button>
+		<button class={selected ? 'is-black' : 'disabled'} on:click={saveNextPlan}
+			>Save meal plan</button
+		>
 	</div>
 </div>
 

@@ -1,6 +1,6 @@
 <script>
 	import CookingList from './CookingList.svelte';
-	import { currentPlan, nextPlan } from "./store.js"
+	import { currentPlan, nextPlan } from './store.js';
 
 	let current;
 	let next;
@@ -8,11 +8,10 @@
 	currentPlan.subscribe((value) => {
 		current = value;
 	});
-	
+
 	nextPlan.subscribe((value) => {
 		next = value;
 	});
-
 </script>
 
 <svelte:head>
@@ -28,11 +27,11 @@
 			<x-cell>(day 3 of 7)</x-cell>
 		</x-flex>
 		{#if next}
-		Coming up:
+			Coming up:
 			<h5 class="plan">{next}</h5>
-	{:else}
-	Upcoming meal plan: none
-	{/if}
+		{:else}
+			Upcoming meal plan: none
+		{/if}
 	</div>
 	<CookingList />
 	<h3>Incoming!</h3>
