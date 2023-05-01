@@ -1,5 +1,18 @@
 <script>
 	import CookingList from './CookingList.svelte';
+	import { currentPlan, nextPlan } from "./store.js"
+
+	let current;
+	let next;
+
+	currentPlan.subscribe((value) => {
+		current = value;
+	});
+	
+	nextPlan.subscribe((value) => {
+		next = value;
+	});
+
 </script>
 
 <svelte:head>
@@ -11,10 +24,15 @@
 	<div class="card">
 		Current meal plan:
 		<x-flex wrap="wrap" ai="center">
-			<x-cell><h4 class="plan">Paleo week 4</h4></x-cell>
+			<x-cell><h4 class="plan">{current}</h4></x-cell>
 			<x-cell>(day 3 of 7)</x-cell>
 		</x-flex>
-		Upcoming meal plan: none
+		{#if next}
+		Coming up:
+			<h5 class="plan">{next}</h5>
+	{:else}
+	Upcoming meal plan: none
+	{/if}
 	</div>
 	<CookingList />
 	<h3>Incoming!</h3>
