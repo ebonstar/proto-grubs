@@ -10,7 +10,7 @@
 		recipes = value;
 	});
 
-	let showNutrition = true;
+	let showNutrition = false;
 
 	const toggleNutrition = () => (showNutrition = !showNutrition);
 </script>
@@ -36,8 +36,11 @@
 <style>
 	.nutrition-header {
 		display: flex;
-		align-items: start;
-		justify-content: space-between;
+		align-items: center;
+	}
+
+	.nutrition-header h5 {
+		margin: 0;
 	}
 
 	.nutrition-header button {
