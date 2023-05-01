@@ -1,13 +1,23 @@
 <script>
 	import { flip } from 'svelte/animate';
 	import { dndzone } from 'svelte-dnd-action';
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { MEAL_PLANS } from '../plan/plans.js';
+	import { nextPlan } from "../store.js"
+
+	let selected;
+	nextPlan.subscribe((value) => {
+		selected = value;
+	});
+
+	const saveNextPlan = () => {
+		nextPlan.update(() => selected);
+
+		goto('/plan');
+	};
+
 	const flipDurationMs = 200;
-
-	const planName = $page.url.searchParams.get('name');
-
-	let selected = planName;
 
 	let mealPlanDays = [
 		{
@@ -119,13 +129,14 @@
 		>
 			{#each mealPlanDays as column (column.id)}
 				<div class="column" animate:flip={{ duration: flipDurationMs }}>
+					
+					<h5>{column.name}</h5>
 					<div
 						class="day"
 						use:dndzone={{ items: column.items, flipDurationMs }}
 						on:consider={(e) => handleDndConsiderCards(column.id, e)}
 						on:finalize={(e) => handleDndFinalizeCards(column.id, e)}
 					>
-						<!-- <h5>{column.name}</h5> -->
 						{#each column.items as item (item.id)}
 							<div class="recipe" animate:flip={{ duration: flipDurationMs }}>
 								{item.name}
@@ -154,10 +165,8 @@
 	{/if}
 
 	<div class="actions">
-		<a href="/plan?name={planName}"><button class="is-black is-outline">Back</button></a>
-		{#if selected}
-			<a href="/plan?name={selected}"><button class="is-black">Save meal plan</button></a>
-		{/if}
+		<a href="/plan"><button class="is-black is-outline">Back</button></a>
+			<button class={selected ? "is-black" : "disabled"}  on:click={saveNextPlan}>Save meal plan</button>
 	</div>
 </div>
 
