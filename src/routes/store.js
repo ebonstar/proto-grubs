@@ -3,6 +3,8 @@ import { recipes } from "./data.js";
 
 export const today = writable([...recipes]);
 
+export const incoming = writable(true);
+
 export const currentPlan = writable("Paleo week 4");
 export const nextPlan = writable("");
 

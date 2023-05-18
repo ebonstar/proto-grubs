@@ -1,9 +1,10 @@
 <script>
 	import CookingList from './CookingList.svelte';
-	import { currentPlan, nextPlan } from './store.js';
+	import { currentPlan, nextPlan, incoming } from './store.js';
 
 	let current;
 	let next;
+	let showIncoming;
 
 	currentPlan.subscribe((value) => {
 		current = value;
@@ -12,6 +13,14 @@
 	nextPlan.subscribe((value) => {
 		next = value;
 	});
+
+	incoming.subscribe((value) => {
+		showIncoming = value;
+	});
+
+	function hideIncoming() {
+		incoming.update(() => false);
+	}
 </script>
 
 <svelte:head>
@@ -34,17 +43,20 @@
 		{/if}
 	</div>
 	<CookingList />
-	<h3>Incoming!</h3>
-	<div class="card">
-		Your friend <a>Hugo</a> just shared his recipe for
-		<a>Banana and Bacon Stuffed French Toast with Peanut Butter Syrup</a>
-		with you!
-		<div class="card-actions">
-			<button class="is-outline is-white">Decline</button><button class="is-white"
-				>Save this recipe</button
-			>
+	{#if showIncoming}
+		<h3>Incoming!</h3>
+		<div class="card">
+			Your friend <span class="special">Hugo</span> just shared his recipe for
+			<span class="special">Banana and Bacon Stuffed French Toast with Peanut Butter Syrup</span>
+			with you!
+			<div class="card-actions">
+				<button class="is-outline is-white" on:click={hideIncoming}>Decline</button>
+				<a href="/recipe?name=Banana and Bacon Stuffed French Toast with Peanut Butter Syrup"
+					><button class="is-white" on:click={hideIncoming}>Save this recipe</button></a
+				>
+			</div>
 		</div>
-	</div>
+	{/if}
 	<h3>♥</h3>
 	Thanks for using Grubs! A short spiel about how we quit our jobs to work on this and we'd really appreciate
 	you sharing Grubs with your friends. Like and subscribe!
@@ -58,7 +70,7 @@
 		margin-bottom: 2rem;
 	}
 
-	.card a {
+	.card .special {
 		font-weight: 700;
 		color: white;
 		text-decoration: underline;
