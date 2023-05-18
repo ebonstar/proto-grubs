@@ -1,45 +1,32 @@
 <script>
 	import { RECIPES } from './recipes.js';
+	import { activeTags, inactiveTags } from '../store.js';
+
+	let active;
+	let inactive;
+	activeTags.subscribe((value) => {
+		active = value;
+	});
+	inactiveTags.subscribe((value) => {
+		inactive = value;
+	});
 
 	const recipes = RECIPES.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase());
 	let searchTerm = '';
 	$: filteredRecipes = recipes.filter(
 		(recipe) =>
 			recipe.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-			(!activeTags.length || activeTags.every((tag) => recipe.tags.includes(tag)))
+			(!active.length || active.every((tag) => recipe.tags.includes(tag)))
 	);
 
-	let inactiveTags = [
-		'30min',
-		'breakfast',
-		'cocktails',
-		'dessert',
-		'dinner',
-		'easy',
-		'from:Anna',
-		'from:Hugo',
-		'from:Justin',
-		'gluten-free',
-		'healthy',
-		'high-protein',
-		'lunch',
-		'one-pot',
-		'paleo',
-		'protein',
-		'snack',
-		'vegan',
-		'vegetarian'
-	];
-	let activeTags = [];
-
 	function activateTag(tag) {
-		activeTags = [tag, ...activeTags];
-		inactiveTags = inactiveTags.filter((i) => i !== tag);
+		activeTags = activeTags.update((tags) => [tags, ...activeTags]);
+		inactiveTags = inactiveTags.update((tags) => tags.filter((i) => i !== tag));
 	}
 
 	function deactivateTag(tag) {
-		activeTags = activeTags.filter((i) => i !== tag);
-		inactiveTags = [tag, ...inactiveTags].sort();
+		activeTags = activeTags.update((tags) => tags.filter((i) => i !== tag));
+		inactiveTags = inactiveTags.update((tags) => [tags, ...inactiveTags].sort());
 	}
 </script>
 
@@ -51,12 +38,12 @@
 	<h1>Recipes</h1>
 	<input type="text" bind:value={searchTerm} placeholder="Search recipe name or ingredient" />
 
-	{#each activeTags as activeTag}
-		<button on:click={() => deactivateTag(activeTag)} class="tag is-black">{activeTag}</button>
+	{#each active as tag}
+		<button on:click={() => deactivateTag(tag)} class="tag is-black">{tag}</button>
 	{/each}
 
 	<div class="all-tags">
-		{#each inactiveTags as tag}
+		{#each inactive as tag}
 			<button on:click={() => activateTag(tag)} class="tag is-outline is-black">{tag}</button>
 		{/each}
 	</div>
