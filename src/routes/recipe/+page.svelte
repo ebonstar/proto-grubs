@@ -1,7 +1,29 @@
 <script>
+	import { marked } from 'marked';
 	import { page } from '$app/stores';
 
 	const recipe = $page.url.searchParams.get('name');
+	let ingredientsData = `### Ingredients
+
+- 250g dried fettuccine pasta
+- 40g butter
+- 2 tbsp extra virgin olive oil
+- 400g button mushrooms, sliced
+- 180g pkt Taste one pan creamy chicken recipe base
+- 300ml ctn thickened cream
+- 1 tbsp fresh thyme leaves, plus extra to serve
+- 1 tsp Dijon mustard
+
+#### Steps
+
+1. Cook the pasta in a saucepan of boiling water following packet directions or until al dente. Drain and return to the pan.
+2. Meanwhile, heat the butter and oil in a frying pan over medium-high heat. Add the mushrooms and cook, stirring occasionally, for 5-8 minutes or until golden. Add the recipe base, cream, thyme and mustard to the pan and bring to the boil. Simmer for 5 minutes or until the sauce thickens slightly.
+3. Add the mushroom sauce to the pasta and toss to combine. Divide among serving bowls. Sprinkle with extra thyme to serve.`;
+	let ingredientsEdit = false;
+
+	function toggleEdit() {
+		ingredientsEdit = !ingredientsEdit;
+	}
 </script>
 
 <svelte:head>
@@ -10,41 +32,15 @@
 
 <div class="fullscreen">
 	<h2>{recipe}</h2>
-	<div class="ingredients">
-		<h4>Ingredients</h4>
-		<label> <input type="checkbox" />2 tsp cumin seeds</label><br />
-		<label> <input type="checkbox" />pinch chilli flakes</label><br />
-		<label> <input type="checkbox" />2 tbsp olive oil</label><br />
-		<label>
-			<input type="checkbox" />600g carrots, washed and coarsely grated (no need to peel)</label
-		><br />
-		<label> <input type="checkbox" />140g split red lentils</label><br />
-		<label> <input type="checkbox" />1l hot vegetable stock (from a cube is fine)</label><br />
-		<label> <input type="checkbox" />125ml milk (to make it dairy-free, see 'try' below)</label><br
-		/>
-		<label> <input type="checkbox" />plain yogurt and naan bread, to serve</label><br />
-	</div>
-	<h4>Steps</h4>
-	<ol>
-		<li>
-			STEP 1 Heat a large saucepan and dry-fry 2 tsp cumin seeds and a pinch of chilli flakes for 1
-			min, or until they start to jump around the pan and release their aromas.
-		</li>
-		<li>
-			STEP 2 Scoop out about half with a spoon and set aside. Add 2 tbsp olive oil, 600g coarsely
-			grated carrots, 140g split red lentils, 1l hot vegetable stock and 125ml milk to the pan and
-			bring to the boil.
-		</li>
-		<li>STEP 3 Simmer for 15 mins until the lentils have swollen and softened.</li>
-		<li>
-			STEP 4 Whizz the soup with a stick blender or in a food processor until smooth (or leave it
-			chunky if you prefer).
-		</li>
-		<li>
-			STEP 5 Season to taste and finish with a dollop of plain yogurt and a sprinkling of the
-			reserved toasted spices. Serve with warmed naan breads.
-		</li>
-	</ol>
+	<button class="is-black is-small" on:click={toggleEdit}
+		>{ingredientsEdit ? '👀 Preview changes' : '✏️ Edit recipe'}</button
+	>
+
+	{#if ingredientsEdit}
+		<textarea type="text" bind:value={ingredientsData} rows="20" />
+	{:else}
+		{@html marked(ingredientsData)}
+	{/if}
 	<div class="actions">
 		<a href="/recipes"><button class="is-black is-outline">Cancel</button></a>
 		<a href="/recipes"><button class="is-black">Save</button></a>
@@ -64,6 +60,14 @@
 
 	.ingredients {
 		margin-bottom: 2rem;
+	}
+
+	h4 {
+		margin-bottom: 0;
+	}
+
+	textarea {
+		line-height: 2em;
 	}
 
 	.actions {
