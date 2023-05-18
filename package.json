@@ -1,32 +1,31 @@
 {
-	"name": "kit-template-default",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check .",
-		"format": "prettier --plugin-search-dir . --write ."
-	},
-	"devDependencies": {
-		"@fontsource/inter": "^4.5.15",
-		"@neoconfetti/svelte": "^1.0.0",
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/adapter-static": "^2.0.2",
-		"@sveltejs/kit": "^1.13.0",
-		"@types/cookie": "^0.5.1",
-		"prettier": "^2.8.6",
-		"prettier-plugin-svelte": "^2.10.0",
-		"svelte": "^3.57.0",
-		"svelte-check": "^3.1.4",
-		"svelte-dnd-action": "^0.9.22",
-		"typescript": "^4.9.5",
-		"vite": "^4.2.1"
-	},
-	"type": "module",
-	"dependencies": {
-		"marked": "^5.0.2"
-	}
+  "name": "kit-template-default",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+    "lint": "prettier --plugin-search-dir . --check .",
+    "format": "prettier --plugin-search-dir . --write ."
+  },
+  "devDependencies": {
+    "@fontsource/inter": "^4.5.15",
+    "@neoconfetti/svelte": "^1.0.0",
+    "@sveltejs/adapter-static": "^2.0.2",
+    "@sveltejs/kit": "^1.13.0",
+    "@types/cookie": "^0.5.1",
+    "prettier": "^2.8.6",
+    "prettier-plugin-svelte": "^2.10.0",
+    "svelte": "^3.57.0",
+    "svelte-check": "^3.1.4",
+    "svelte-dnd-action": "^0.9.22",
+    "typescript": "^4.9.5",
+    "vite": "^4.2.1"
+  },
+  "type": "module",
+  "dependencies": {
+    "marked": "^5.0.2"
+  }
 }
