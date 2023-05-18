@@ -1,6 +1,6 @@
 <script>
-	
-	import {browser} from "$app/environment";
+	import { browser } from '$app/environment';
+	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { MEAL_PLANS } from './plans.js';
 	import { currentPlan, nextPlan } from '../store.js';
@@ -16,7 +16,7 @@
 		next = value;
 	});
 
-	const planName = browser ?  $page.url.searchParams.get('name') : 'Unknown plan';
+	const planName = browser ? $page.url.searchParams.get('name') : 'Unknown plan';
 </script>
 
 <svelte:head>
@@ -30,10 +30,10 @@
 <div class="card">
 	<h5>Next plan</h5>
 	{#if next}
-		<a href="/usemealplan"><h4>{next} (7 days) ✏️</h4></a>
+		<a href="{base}/usemealplan"><h4>{next} (7 days) ✏️</h4></a>
 		Starting 22 March 2023
 	{:else}
-		<a href="/usemealplan"><button class="is-outline is-white">+ Add a meal plan</button></a>
+		<a href="{base}/usemealplan"><button class="is-outline is-white">+ Add a meal plan</button></a>
 	{/if}
 </div>
 <h1>Meal plans</h1>

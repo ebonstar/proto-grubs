@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
 	import { RECIPES } from './recipes.js';
 	import { activeTags, inactiveTags } from '../store.js';
 
@@ -50,7 +51,7 @@
 
 	<ul class="recipe-list">
 		{#each filteredRecipes as recipe}
-			<li><a href="/recipe?name={recipe.name}">{recipe.name}</a></li>
+			<li><a href="{base}/recipe?name={recipe.name}">{recipe.name}</a></li>
 		{/each}
 	</ul>
 </div>

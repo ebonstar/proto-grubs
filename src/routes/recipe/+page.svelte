@@ -1,6 +1,7 @@
 <script>
 	import { marked } from 'marked';
-	import {browser} from "$app/environment";
+	import { browser } from '$app/environment';
+	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 
 	const recipe = browser ? $page.url.searchParams.get('name') : 'Unknown recipe';
@@ -43,8 +44,8 @@
 		{@html marked(ingredientsData)}
 	{/if}
 	<div class="actions">
-		<a href="/recipes"><button class="is-black is-outline">Cancel</button></a>
-		<a href="/recipes"><button class="is-black">Save</button></a>
+		<a href="{base}/recipes"><button class="is-black is-outline">Cancel</button></a>
+		<a href="{base}/recipes"><button class="is-black">Save</button></a>
 	</div>
 </div>
 

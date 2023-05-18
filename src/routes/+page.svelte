@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
 	import CookingList from './CookingList.svelte';
 	import { currentPlan, nextPlan, incoming } from './store.js';
 
@@ -51,7 +52,7 @@
 			with you!
 			<div class="card-actions">
 				<button class="is-outline is-white" on:click={hideIncoming}>Decline</button>
-				<a href="/recipe?name=Banana and Bacon Stuffed French Toast with Peanut Butter Syrup"
+				<a href="{base}/recipe?name=Banana and Bacon Stuffed French Toast with Peanut Butter Syrup"
 					><button class="is-white" on:click={hideIncoming}>Save this recipe</button></a
 				>
 			</div>

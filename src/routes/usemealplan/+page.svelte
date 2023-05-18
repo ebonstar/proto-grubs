@@ -2,6 +2,7 @@
 	import { flip } from 'svelte/animate';
 	import { dndzone } from 'svelte-dnd-action';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { MEAL_PLANS } from '../plan/plans.js';
 	import { nextPlan } from '../store.js';
@@ -164,7 +165,7 @@
 	{/if}
 
 	<div class="actions">
-		<a href="/plan"><button class="is-black is-outline">Back</button></a>
+		<a href="{base}/plan"><button class="is-black is-outline">Back</button></a>
 		<button class={selected ? 'is-black' : 'disabled'} on:click={saveNextPlan}
 			>Save meal plan</button
 		>

@@ -1,4 +1,6 @@
 <script>
+	import { base } from '$app/paths';
+
 	export let name;
 	export let cooked = false;
 	export let prep;
@@ -15,7 +17,7 @@
 			{#if cook}<div>Cook time: {cook}</div>{/if}
 		{/if}
 	</div>
-	<a href="/cook?name={name}"
+	<a href="{base}/cook?name={name}"
 		><button class="button is-black">{cooked ? 'Done ✓' : 'Cook!'}</button></a
 	>
 </div>

@@ -1,6 +1,7 @@
 <script>
-	import {browser} from "$app/environment";
+	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { today } from '../store.js';
 
