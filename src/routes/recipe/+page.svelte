@@ -58,14 +58,6 @@
 		background: white;
 	}
 
-	.ingredients {
-		margin-bottom: 2rem;
-	}
-
-	h4 {
-		margin-bottom: 0;
-	}
-
 	textarea {
 		line-height: 2em;
 	}
