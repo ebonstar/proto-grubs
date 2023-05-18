@@ -1,9 +1,10 @@
 <script>
+	import {browser} from "$app/environment";
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { today } from '../store.js';
 
-	const recipe = $page.url.searchParams.get('name');
+	const recipe = browser ? $page.url.searchParams.get('name') : 'Unknown recipe';
 
 	const markRecipeCooked = (done) => {
 		today.update((rs) => {

@@ -126,7 +126,6 @@
 			<option value={VIEW_BY_AISLE}>{VIEW_BY_AISLE}</option>
 		</select>
 
-		<!-- <pre>{JSON.stringify(view, null, 2)}</pre> -->
 		{#each Object.entries(view) as [heading, list]}
 			<h6>{heading}:</h6>
 

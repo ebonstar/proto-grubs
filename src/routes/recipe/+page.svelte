@@ -1,8 +1,9 @@
 <script>
 	import { marked } from 'marked';
+	import {browser} from "$app/environment";
 	import { page } from '$app/stores';
 
-	const recipe = $page.url.searchParams.get('name');
+	const recipe = browser ? $page.url.searchParams.get('name') : 'Unknown recipe';
 	let ingredientsData = `### Ingredients
 
 - 250g dried fettuccine pasta

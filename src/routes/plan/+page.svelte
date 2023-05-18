@@ -1,4 +1,6 @@
 <script>
+	
+	import {browser} from "$app/environment";
 	import { page } from '$app/stores';
 	import { MEAL_PLANS } from './plans.js';
 	import { currentPlan, nextPlan } from '../store.js';
@@ -14,7 +16,7 @@
 		next = value;
 	});
 
-	const planName = $page.url.searchParams.get('name');
+	const planName = browser ?  $page.url.searchParams.get('name') : 'Unknown plan';
 </script>
 
 <svelte:head>
