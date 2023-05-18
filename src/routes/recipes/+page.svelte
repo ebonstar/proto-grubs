@@ -20,13 +20,13 @@
 	);
 
 	function activateTag(tag) {
-		activeTags = activeTags.update((tags) => [tags, ...activeTags]);
-		inactiveTags = inactiveTags.update((tags) => tags.filter((i) => i !== tag));
+		activeTags.update((tags) => [...tags, tag]);
+		inactiveTags.update((tags) => tags.filter((i) => i !== tag));
 	}
 
 	function deactivateTag(tag) {
-		activeTags = activeTags.update((tags) => tags.filter((i) => i !== tag));
-		inactiveTags = inactiveTags.update((tags) => [tags, ...inactiveTags].sort());
+		activeTags.update((tags) => tags.filter((i) => i !== tag));
+		inactiveTags.update((tags) => [...tags, tag].sort());
 	}
 </script>
 
